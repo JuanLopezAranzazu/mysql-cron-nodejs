@@ -1,0 +1,41 @@
+@api = http://localhost:3001/api/v1
+
+###
+
+GET {{api}}/users
+
+###
+
+POST {{api}}/users/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "email": "test",
+  "password": "test"
+}
+
+###
+
+POST {{api}}/users/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+###
+
+GET {{api}}/events
+
+###
+
+POST {{api}}/events
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1OTgxMTEzLCJleHAiOjE2NzU5ODQ3MTN9.b8VygtpEEXpyxuXx7ecQ8Zr2zmbGIyNkZ-XslEV6ehA
+
+{
+  "name": "test2",
+  "event_date": "2023-02-09"
+}
