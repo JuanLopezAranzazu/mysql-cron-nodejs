@@ -10,9 +10,9 @@ POST {{api}}/users/register
 Content-Type: application/json
 
 {
-  "username": "test",
-  "email": "test",
-  "password": "test"
+  "username": "test2",
+  "email": "test2",
+  "password": "test2"
 }
 
 ###
@@ -33,9 +33,19 @@ GET {{api}}/events
 
 POST {{api}}/events
 Content-Type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1OTgxMTEzLCJleHAiOjE2NzU5ODQ3MTN9.b8VygtpEEXpyxuXx7ecQ8Zr2zmbGIyNkZ-XslEV6ehA
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc2MDQ3NDIxLCJleHAiOjE2NzYwNTEwMjF9.3zMYxcYzIU5445WkBxnC9zA2qySjuihezv-LPTSOFcc
 
 {
-  "name": "test2",
-  "event_date": "2023-02-09"
+  "name": "test3",
+  "event_date": "2023-02-10"
+}
+
+###
+
+POST {{api}}/users/join-event
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc2MDQ4NTAzLCJleHAiOjE2NzYwNTIxMDN9.S3R5zb8L4TNHN18SMO520qh235Ceyl--WBKaM2aD1Ug
+
+{
+  "event_id": 3
 }

@@ -19,13 +19,32 @@ app.use("/api/v1/notifications", notificationRouter);
 const cron = require("node-cron");
 const pool = require("./database");
 
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 0 12 * * *", async () => {
   try {
-    console.log("running a task every minute");
+    console.log("running a task every day 12:00pm");
+
     const [events] = await pool.query(
       "SELECT * FROM event WHERE event_date = CURDATE()"
     );
+
     console.log("EVENTS CURDATE", events);
+
+    events.forEach(async (event) => {
+      const [notificationSaved] = await pool.query(
+        "INSERT INTO notification(message) VALUES(?)",
+        [`Event of the day ${event.name}`]
+      );
+      const [users] = await pool.query(
+        "SELECT * FROM user WHERE id IN (SELECT user_id FROM users_events WHERE event_id = ?)",
+        [event.id]
+      );
+      users.forEach(async (user) => {
+        await pool.query(
+          "INSERT INTO users_notifications(user_id, notification_id) VALUES(?,?)",
+          [user.id, notificationSaved.insertId]
+        );
+      });
+    });
   } catch (error) {
     console.error(error);
   }
